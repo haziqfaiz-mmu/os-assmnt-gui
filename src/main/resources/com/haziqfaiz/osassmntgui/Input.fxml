@@ -10,7 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haziqfaiz.osassmntgui.Controller">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="0.0" prefWidth="0.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
@@ -34,7 +36,16 @@
          <effect>
             <SepiaTone />
          </effect></Label>
-      <ComboBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="621.0" promptText="Please select an algorithm" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <ComboBox fx:id="algorithmBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="621.0" value="Shortest Job First" GridPane.columnIndex="1" GridPane.rowIndex="2" >
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="Shortest Job First" />
+                   <String fx:value="Round Robin" />
+                   <String fx:value="Amende entah satu lagi" />
+               </FXCollections>
+           </items>
+       </ComboBox>
+
       <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="614.0" text="Select Algorithm" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font size="19.0" />
