@@ -25,9 +25,9 @@
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <TextField fx:id="arrivalTextField" alignment="CENTER" layoutX="123.0" layoutY="138.0" onAction="#arrivalTextAction" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Arrival time" />
-        <TextField fx:id="burstTextField" alignment="CENTER" layoutX="123.0" layoutY="188.0" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Burst Time" />
+        <TextField fx:id="arrivalTextField" alignment="CENTER" layoutX="123.0" layoutY="138.0" onAction="#arrivalTextFieldAction" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Arrival time" />
+        <TextField fx:id="burstTextField" alignment="CENTER" layoutX="123.0" layoutY="188.0" onAction="#burstTextFieldAction" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Burst Time" />
         <Button layoutX="257.0" layoutY="271.0" mnemonicParsing="false" text="Solve" />
-      <TextField fx:id="priorityTextField" alignment="CENTER" layoutX="127.0" layoutY="231.0" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Process Priority" />
+      <TextField fx:id="priorityTextField" alignment="CENTER" layoutX="127.0" layoutY="231.0" onAction="#priorityTextFieldAction" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Process Priority" />
     </children>
 </AnchorPane>

@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -31,6 +33,14 @@ public class Controller implements Initializable {
 
     @FXML
     private TextField priorityTextField;
+
+    private int[] arrivalTimeArray, burstTimeArray, priorityArray;
+
+    private String[] processIDArray;
+
+    private Job[] jobsArray;
+
+    private Queue<Job> jobsQueue = new LinkedList<Job>();
 
     public void setMainBox(){
         mainBox.setOnAction((event) -> {
@@ -77,12 +87,46 @@ public class Controller implements Initializable {
 
     }
 
-    public void arrivalTextAction(){
+    public void arrivalTextFieldAction(){
         String input = arrivalTextField.getText();
         String[] inputArr = input.split("\\s+");
         System.out.println(Arrays.toString(inputArr));
-        System.out.println(inputArr[1]);
+        arrivalTimeArray = new int[inputArr.length];
+
+        //convert from String to action;
+        for(int i=0;i<inputArr.length;i++){
+            arrivalTimeArray[i] = Integer.parseInt(inputArr[i]);
+        }
+        System.out.print("Converted to int: ");
+        System.out.println(Arrays.toString(arrivalTimeArray));
     }
 
+    public void burstTextFieldAction(){
+        String input = burstTextField.getText();
+        String[] inputArr = input.split("\\s+");
+        System.out.println(Arrays.toString(inputArr));
+        burstTimeArray = new int[inputArr.length];
+
+        //convert from String to action;
+        for(int i=0;i<inputArr.length;i++){
+            burstTimeArray[i] = Integer.parseInt(inputArr[i]);
+        }
+        System.out.print("Converted to int: ");
+        System.out.println(Arrays.toString(burstTimeArray));
+    }
+
+    public void priorityTextFieldAction(){
+        String input = priorityTextField.getText();
+        String[] inputArr = input.split("\\s+");
+        System.out.println(Arrays.toString(inputArr));
+        priorityArray = new int[inputArr.length];
+
+        //convert from String to action;
+        for(int i=0;i<inputArr.length;i++){
+            priorityArray[i] = Integer.parseInt(inputArr[i]);
+        }
+        System.out.print("Converted to int: ");
+        System.out.println(Arrays.toString(priorityArray));
+    }
 
 }
