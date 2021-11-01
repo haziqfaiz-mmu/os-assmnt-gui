@@ -136,6 +136,9 @@ public class Controller implements Initializable {
     public void solveButtonMainAction(){
         if(mainBox.getValue().equals("Round Robin")){
             RoundRobin rr = new RoundRobin();
+            rr.fillJobList(arrivalTimeArray, burstTimeArray);
+            rr.solve();
+            gcArray = rr.getGcArray();
         }
     }
 

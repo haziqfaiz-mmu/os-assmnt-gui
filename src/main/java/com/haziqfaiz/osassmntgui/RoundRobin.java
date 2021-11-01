@@ -10,11 +10,21 @@ public class RoundRobin {
     private ArrayList<Job> jobList = new ArrayList<Job>();
     private ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
 
-    public void jobBuilder(int[] arrivalTimeArray, int[] burstTimeArray){
+    public ArrayList<Job> getJobList(){
+        return this.jobList;
+    }
 
-        //buat string untuk nama///////////////////////
+    public ArrayList<GanttChart> getGcArray(){
+        return this.gcArray;
+    }
+
+    public void fillJobList(int[] arrivalTimeArray, int[] burstTimeArray){
+
         for(int i=0;i<arrivalTimeArray.length;i++){
-            Job newJob = new Job("P1",arrivalTimeArray[i],burstTimeArray[i]);
+            StringBuilder str = new StringBuilder("P");
+            str.append(i+1);
+
+            Job newJob = new Job(str.toString(),arrivalTimeArray[i],burstTimeArray[i]);
             jobList.add(newJob);
         }
     }
@@ -23,14 +33,8 @@ public class RoundRobin {
 
         int cpuTime=0,avgWT, avgTT;
 
-        Job j1 = new Job("j1",3,11);
-        Job j2 = new Job("j2",6,10);
-        Job j3 = new Job("j3",2,10);
         Queue<Job> waitQueue = new LinkedList<Job>();
 
-        jobList.add(j1);
-        jobList.add(j2);
-        jobList.add(j3);
         Collections.sort(jobList);
 
         System.out.println("Job list: "+jobList.toString());
@@ -66,9 +70,7 @@ public class RoundRobin {
             System.out.println(waitQueue);
 
         }
-        System.out.println(j1.getCompletionTime());
-        System.out.println(j2.getCompletionTime());
-        System.out.println(j3.getCompletionTime());
+
         System.out.println(gcArray);
     }
 
