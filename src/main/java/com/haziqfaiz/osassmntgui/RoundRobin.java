@@ -6,11 +6,23 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class RoundRobin {
-    public static void solve(){
+
+    private ArrayList<Job> jobList = new ArrayList<Job>();
+    private ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
+
+    public void jobBuilder(int[] arrivalTimeArray, int[] burstTimeArray){
+
+        //buat string untuk nama///////////////////////
+        for(int i=0;i<arrivalTimeArray.length;i++){
+            Job newJob = new Job("P1",arrivalTimeArray[i],burstTimeArray[i]);
+            jobList.add(newJob);
+        }
+    }
+
+    public void solve(){
 
         int cpuTime=0,avgWT, avgTT;
-        ArrayList<Job> jobList = new ArrayList<Job>();
-        ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
+
         Job j1 = new Job("j1",3,11);
         Job j2 = new Job("j2",6,10);
         Job j3 = new Job("j3",2,10);
@@ -61,7 +73,7 @@ public class RoundRobin {
     }
 
 
-    public static int process(Job j, int cpuTime, ArrayList<Job> jobList, Queue<Job> waitQueue, ArrayList<GanttChart> gcArray){
+    public int process(Job j, int cpuTime, ArrayList<Job> jobList, Queue<Job> waitQueue, ArrayList<GanttChart> gcArray){
 
         int qTime =3, i=1, cpuTimeCopy = cpuTime;
         while(i<=qTime && j.getRemainingBurstTime()>0){
@@ -83,7 +95,7 @@ public class RoundRobin {
         return cpuTime;
     }
 
-    public static void checkForNewArrival(ArrayList<Job> jobList, Queue<Job> waitQueue, int cpuTime){
+    public void checkForNewArrival(ArrayList<Job> jobList, Queue<Job> waitQueue, int cpuTime){
 
         boolean flag = true;
         int i=0;
