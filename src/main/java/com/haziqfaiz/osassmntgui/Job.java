@@ -2,7 +2,7 @@ package com.haziqfaiz.osassmntgui;
 
 public class Job implements Comparable<Job> {
 
-    private int arrivalTime, burstTime, remainingBurstTime, priority, processorTime, waitTime, turnAroundTime;
+    private int arrivalTime, burstTime, remainingBurstTime, priority, completionTime, waitTime, turnAroundTime;
     private String jobID;
     private Boolean jobStatus;
 
@@ -14,8 +14,10 @@ public class Job implements Comparable<Job> {
         setJobID(jobID);
         setArrivalTime(arrivalTime);
         setBurstTime(burstTime);
+        setRemainingBurstTime(burstTime);
         setWaitTime(0);
         setTurnAroundTime(0);
+        setJobStatus(false);
     }
 
     Job(String jobID, int arrivalTime, int burstTime, int priority){
@@ -39,8 +41,12 @@ public class Job implements Comparable<Job> {
         this.priority = priority;
     }
 
-    public void setProcessorTime(int processorTime){
-        this.processorTime = processorTime;
+    public void setProcessorTime(int completionTime){
+        this.completionTime = completionTime;
+    }
+
+    public void setCompletionTime(int completionTime) {
+        this.completionTime = completionTime;
     }
 
     public void setWaitTime(int waitTime) {
@@ -72,11 +78,15 @@ public class Job implements Comparable<Job> {
     }
 
     public int getProcessorTime() {
-        return processorTime;
+        return completionTime;
     }
 
     public int getRemainingBurstTime() {
         return remainingBurstTime;
+    }
+
+    public int getCompletionTime(){
+        return completionTime;
     }
 
     public int getWaitTime() {
