@@ -48,7 +48,7 @@ public class Controller implements Initializable {
     public void setMainBox(){
         mainBox.setOnAction((event) -> {
             int selectedIndex = mainBox.getSelectionModel().getSelectedIndex();
-            if (selectedIndex == 2){
+            if (mainBox.getValue().equals("Preemptive Priority")||mainBox.getValue().equals("Non-Preemptive Priority")){
                 try{
                     System.out.println("Priority chosen");
                     Parent root = FXMLLoader.load(getClass().getResource("PriorityInput.fxml"));
@@ -69,7 +69,7 @@ public class Controller implements Initializable {
         priorityBox.setOnAction((event) ->{
             int selectedIndex = priorityBox.getSelectionModel().getSelectedIndex();
             System.out.println(priorityBox.getValue());
-            if (!priorityBox.getValue().equals("Priority")){
+            if (priorityBox.getValue().equals("Round Robin") || priorityBox.getValue().equals("Non-Preemptive SJF") || priorityBox.getValue().equals("Preemptive SJF")){
 
                 try{
                     System.out.println("Non Priority chosen");
@@ -132,14 +132,31 @@ public class Controller implements Initializable {
         System.out.println(Arrays.toString(priorityArray));
     }
 
-    public void fillGanttChart(){}
     public void solveButtonMainAction(){
+        arrivalTextFieldAction();
+        burstTextFieldAction();
+
+
         if(mainBox.getValue().equals("Round Robin")){
             RoundRobin rr = new RoundRobin();
             rr.fillJobList(arrivalTimeArray, burstTimeArray);
             rr.solve();
             gcArray = rr.getGcArray();
-            System.out.println(gcArray);
+            System.out.println("This is Round Robin");
+        }
+        else if(mainBox.getValue().equals("Non-Preemptive SJF")){
+            NonPreemptiveSJF nsjf = new NonPreemptiveSJF();
+            nsjf.fillJobList(arrivalTimeArray,burstTimeArray);
+            nsjf.solve();
+            gcArray = nsjf.getGcArray();
+            System.out.println("This is Non-Preemptive SJF");
+        }
+        else if(mainBox.getValue().equals("Preemptive SJF")){
+            PreemptiveSJF psjf = new PreemptiveSJF();
+            psjf.fillJobList(arrivalTimeArray,burstTimeArray);
+            psjf.solve();
+            gcArray = psjf.getGcArray();
+            System.out.println("This is Preemptive SJF");
         }
     }
 

@@ -11,12 +11,14 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haziqfaiz.osassmntgui.Controller">
    <children>
-      <ComboBox fx:id="mainBox" layoutX="202.0" layoutY="79.0" onAction="#setMainBox" prefHeight="27.0" prefWidth="192.0" value="Shortest Job First">
+      <ComboBox fx:id="mainBox" layoutX="202.0" layoutY="79.0" onAction="#setMainBox" prefHeight="27.0" prefWidth="192.0" value="Non-Preemptive SJF">
        <items>
            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Shortest Job First" />
+               <String fx:value="Non-Preemptive SJF" />
+               <String fx:value="Preemptive SJF" />
                <String fx:value="Round Robin" />
-               <String fx:value="Priority" />
+               <String fx:value="Non-Preemptive Priority" />
+               <String fx:value="Preemptive Priority" />
            </FXCollections>
        </items>
        </ComboBox>
@@ -27,6 +29,6 @@
       </Label>
       <TextField fx:id="arrivalTextField" alignment="CENTER" layoutX="123.0" layoutY="138.0" onAction="#arrivalTextFieldAction" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Arrival Time" />
       <TextField fx:id="burstTextField" alignment="CENTER" layoutX="123.0" layoutY="188.0" onAction="#burstTextFieldAction" prefHeight="24.0" prefWidth="354.0" promptText="Please Enter Burst Time" />
-      <Button layoutX="250.0" layoutY="262.0" mnemonicParsing="false" text="Solve" />
+      <Button layoutX="250.0" layoutY="262.0" mnemonicParsing="false" onAction="#solveButtonMainAction" text="Solve" />
    </children>
 </AnchorPane>

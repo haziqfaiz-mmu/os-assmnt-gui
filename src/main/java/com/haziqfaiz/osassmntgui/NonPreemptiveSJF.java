@@ -7,24 +7,33 @@ import java.util.Queue;
 
 public class NonPreemptiveSJF {
 
+    private ArrayList<Job> jobList = new ArrayList<Job>();
+    private ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
+
+    public ArrayList<Job> getJobList(){
+        return this.jobList;
+    }
+
+    public ArrayList<GanttChart> getGcArray(){
+        return this.gcArray;
+    }
+
+    public void fillJobList(int[] arrivalTimeArray, int[] burstTimeArray){
+
+        for(int i=0;i<arrivalTimeArray.length;i++){
+            StringBuilder str = new StringBuilder("P");
+            str.append(i+1);
+
+            Job newJob = new Job(str.toString(),arrivalTimeArray[i],burstTimeArray[i]);
+            jobList.add(newJob);
+        }
+    }
+
     public void solve(){
         int cpuTime=0,avgWT, avgTT;
-        ArrayList<Job> jobList = new ArrayList<Job>();
-        ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
-        Job j1 = new Job("j1",0,6);
-        Job j2 = new Job("j2",1,4);
-        Job j3 = new Job("j3",5,6);
-        /**Job j4 = new Job("j4",6,6);
-         Job j5 = new Job("j5",7,6);
-         Job j6 = new Job("j6",8,6);**/
-        LinkedList<Job> waitQueue = new LinkedList<Job>();
 
-        jobList.add(j1);
-        jobList.add(j2);
-        jobList.add(j3);
-        /**jobList.add(j4);
-         jobList.add(j5);
-         jobList.add(j6);**/
+        LinkedList<Job> waitQueue = new LinkedList<Job>();
+        
         Collections.sort(jobList, new CompareArrivalThenBurst());
 
         System.out.println("Job list: "+jobList.toString());

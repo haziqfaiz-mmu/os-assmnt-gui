@@ -11,12 +11,14 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haziqfaiz.osassmntgui.Controller">
     <children>
-        <ComboBox fx:id="priorityBox" layoutX="202.0" layoutY="79.0" onAction="#setPriorityBox" prefHeight="27.0" prefWidth="192.0" value="Priority">
+        <ComboBox fx:id="priorityBox" layoutX="202.0" layoutY="79.0" onAction="#setPriorityBox" prefHeight="27.0" prefWidth="192.0" value="Non-Preemptive Priority">
             <items>
                 <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Shortest Job First" />
+                    <String fx:value="Non-Preemptive SJF" />
+                    <String fx:value="Preemptive SJF" />
                     <String fx:value="Round Robin" />
-                    <String fx:value="Priority" />
+                    <String fx:value="Non-Preemptive Priority" />
+                    <String fx:value="Preemptive Priority" />
                 </FXCollections>
             </items>
         </ComboBox>

@@ -1,6 +1,7 @@
 package com.haziqfaiz.osassmntgui;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,7 +64,14 @@ public class ResultController {
         }
     }
 
-    public void backButtonAction() {
+    public void backButtonAction(ActionEvent event) throws IOException {
 
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Scheduling Algorithm Solver");
+        stage.setScene(scene);
+        stage.show();
     }
 }
