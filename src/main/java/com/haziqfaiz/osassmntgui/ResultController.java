@@ -43,7 +43,7 @@ public class ResultController {
     }
 
     @FXML
-    private HBox hBox;
+    private HBox hBox,hBox1;
 
     @FXML
     private Button backButton;
@@ -55,7 +55,9 @@ public class ResultController {
         System.out.println("Finished Job List in result: "+finishedJobList.get(0).getTurnAroundTime());
 
         for (int i = 0; i < gcArray.size(); i++) {
+            //Fill in hBox
             Line line = new Line();
+            line.setStroke(Color.WHITE);
             Rectangle rectangle = new Rectangle(90, 40, Color.TEAL);
             StackPane stackPane = new StackPane();
             Text text = new Text();
@@ -67,6 +69,22 @@ public class ResultController {
 
             hBox.getChildren().add(stackPane);
             hBox.getChildren().add(line);
+
+            //Fill in hBox1
+            Line line2 = new Line();
+            line2.setStroke(Color.BLACK);
+            Rectangle bigRectangle = new Rectangle(90, 40, Color.WHITE);
+            StackPane stackPane2 = new StackPane();
+            Text text2 = new Text();
+            String str = gcArray.get(i).getTimeStart()+"       "+ gcArray.get(i).getTimeEnd();
+            text2.setText(str);
+            text2.setFont(Font.font("verdana", FontPosture.REGULAR, 15));
+
+            ObservableList listStackPane2 = stackPane2.getChildren();
+            listStackPane2.addAll(bigRectangle, text2);
+
+            hBox1.getChildren().add(stackPane2);
+            hBox1.getChildren().add(line2);
         }
     }
 

@@ -7,11 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -133,6 +131,39 @@ public class Controller implements Initializable {
         arrivalTextFieldAction();
         burstTextFieldAction();
 
+        if (arrivalTimeArray.length<3||burstTimeArray.length<3) {
+            infoBox("Must be at least 3 processes", null, "Failed");
+            return;
+        }
+        if (arrivalTimeArray.length>13||burstTimeArray.length>13) {
+            infoBox("Must be at most 13 processes", null, "Failed");
+            return;
+        }
+        if (arrivalTimeArray.length!=burstTimeArray.length) {
+            infoBox("The number of inputs do not match", null, "Failed");
+            return;
+        }
+
+       /** Window owner = solveButtonMain.getScene().getWindow();
+
+        if (arrivalTimeArray.length<3 || burstTimeArray.length<3) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "There must be at least 3 processes");
+            return;
+        }
+
+        if (arrivalTimeArray.length>13 || burstTimeArray.length>31) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "There must be at most 13 processes");
+            return;
+        }
+
+        if (arrivalTimeArray.length!=burstTimeArray.length) {
+            showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "The number of input in both fields do not match");
+            return;
+        }**/
+
 
         if(mainBox.getValue().equals("Round Robin")){
 
@@ -164,19 +195,74 @@ public class Controller implements Initializable {
 
         }
         else if(mainBox.getValue().equals("Non-Preemptive SJF")){
-            NonPreemptiveSJF nsjf = new NonPreemptiveSJF();
-            nsjf.fillJobList(arrivalTimeArray,burstTimeArray);
-            nsjf.solve();
-            gcArray = nsjf.getGcArray();
-            System.out.println("This is Non-Preemptive SJF");
+
+            try{
+                NonPreemptiveSJF nsjf = new NonPreemptiveSJF();
+                nsjf.fillJobList(arrivalTimeArray, burstTimeArray);
+                nsjf.solve();
+                gcArray = nsjf.getGcArray();
+                finishedJobList = nsjf.getFinishedJobList();
+                System.out.println("This is Non-Preemptive SJF");
+                System.out.println("gcArray in main: "+gcArray);
+                System.out.println("Finished Job List in main: "+finishedJobList);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Result.fxml"));
+                Parent root = loader.load();
+                ResultController resultController = loader.getController();
+                resultController.setGcArray(gcArray);
+                resultController.setFinishedJobList(finishedJobList);
+                resultController.initialize();
+
+                Scene scene = new Scene(root);
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setTitle("Scheduling Algorithm Solver");
+                stage.setScene(scene);
+                stage.show();
+            }catch (IOException e){}
         }
         else if(mainBox.getValue().equals("Preemptive SJF")){
-            PreemptiveSJF psjf = new PreemptiveSJF();
-            psjf.fillJobList(arrivalTimeArray,burstTimeArray);
-            psjf.solve();
-            gcArray = psjf.getGcArray();
-            System.out.println("This is Preemptive SJF");
+
+            try{
+                PreemptiveSJF psjf = new PreemptiveSJF();
+                psjf.fillJobList(arrivalTimeArray, burstTimeArray);
+                psjf.solve();
+                gcArray = psjf.getGcArray();
+                finishedJobList = psjf.getFinishedJobList();
+                System.out.println("This is Preemptive SJF");
+                System.out.println("gcArray in main: "+gcArray);
+                System.out.println("Finished Job List in main: "+finishedJobList);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Result.fxml"));
+                Parent root = loader.load();
+                ResultController resultController = loader.getController();
+                resultController.setGcArray(gcArray);
+                resultController.setFinishedJobList(finishedJobList);
+                resultController.initialize();
+
+                Scene scene = new Scene(root);
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setTitle("Scheduling Algorithm Solver");
+                stage.setScene(scene);
+                stage.show();
+            }catch (IOException e){}
         }
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
+    public static void infoBox(String infoMessage, String headerText, String title) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
     }
 
 }
