@@ -38,11 +38,7 @@ public class Controller implements Initializable {
 
     private int[] arrivalTimeArray, burstTimeArray, priorityArray;
 
-    private String[] processIDArray;
-
-    private Job[] jobsArray;
-
-    private Queue<Job> jobsQueue = new LinkedList<Job>();
+    private ArrayList<Job> finishedJobList = new ArrayList<Job>();
 
     private ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
 
@@ -145,13 +141,16 @@ public class Controller implements Initializable {
                 rr.fillJobList(arrivalTimeArray, burstTimeArray);
                 rr.solve();
                 gcArray = rr.getGcArray();
+                finishedJobList = rr.getFinishedJobList();
                 System.out.println("This is Round Robin");
                 System.out.println("gcArray in main: "+gcArray);
+                System.out.println("Finished Job List in main: "+finishedJobList);
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Result.fxml"));
                 Parent root = loader.load();
                 ResultController resultController = loader.getController();
                 resultController.setGcArray(gcArray);
+                resultController.setFinishedJobList(finishedJobList);
                 resultController.initialize();
 
                 Scene scene = new Scene(root);

@@ -31,10 +31,12 @@ import java.util.ResourceBundle;
 public class ResultController {
 
     ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
+    ArrayList<Job> finishedJobList = new ArrayList<Job>();
 
     public void setGcArray(ArrayList<GanttChart> gcArray){
         this.gcArray = gcArray;
     }
+    public void setFinishedJobList(ArrayList<Job> finishedJobList){this.finishedJobList = finishedJobList;}
 
     public ArrayList<GanttChart> getGcArray(){
         return this.gcArray;
@@ -49,6 +51,8 @@ public class ResultController {
     public void initialize() {
 
         System.out.println("gcArray in result: "+gcArray);
+        if(!finishedJobList.isEmpty())
+        System.out.println("Finished Job List in result: "+finishedJobList.get(0).getTurnAroundTime());
 
         for (int i = 0; i < gcArray.size(); i++) {
             Line line = new Line();

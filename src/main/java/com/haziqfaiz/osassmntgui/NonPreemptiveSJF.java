@@ -9,6 +9,7 @@ public class NonPreemptiveSJF {
 
     private ArrayList<Job> jobList = new ArrayList<Job>();
     private ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
+    private ArrayList<Job> finishedJobList = new ArrayList<Job>();
 
     public ArrayList<Job> getJobList(){
         return this.jobList;
@@ -17,6 +18,8 @@ public class NonPreemptiveSJF {
     public ArrayList<GanttChart> getGcArray(){
         return this.gcArray;
     }
+
+    public ArrayList<Job> getFinishedJobList(){return this.finishedJobList;}
 
     public void fillJobList(int[] arrivalTimeArray, int[] burstTimeArray){
 
@@ -59,7 +62,7 @@ public class NonPreemptiveSJF {
             System.out.println("cpuTime = "+cpuTime);
             //System.out.println(waitQueue);
 
-            if(temp.getJobStatus()==false){
+            if(!temp.getJobStatus()){
                 waitQueue.add(temp);
                 Collections.sort(waitQueue,new CompareBurst());
             }
@@ -108,6 +111,9 @@ public class NonPreemptiveSJF {
         if(j.getRemainingBurstTime()==0){
             j.setJobStatus(true);
             j.setCompletionTime(cpuTime);
+            j.setTurnAroundTime(j.getCompletionTime()-j.getArrivalTime());
+            j.setWaitTime(j.getTurnAroundTime()-j.getBurstTime());
+            finishedJobList.add(j);
         }
 
         return cpuTime;
