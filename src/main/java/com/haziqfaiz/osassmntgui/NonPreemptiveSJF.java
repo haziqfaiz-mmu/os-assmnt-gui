@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class NonPreemptiveSJF {
 
-    public static void solve(){
+    public void solve(){
         int cpuTime=0,avgWT, avgTT;
         ArrayList<Job> jobList = new ArrayList<Job>();
         ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
@@ -25,7 +25,7 @@ public class NonPreemptiveSJF {
         /**jobList.add(j4);
          jobList.add(j5);
          jobList.add(j6);**/
-        Collections.sort(jobList, new CompareArrivalthenBurst());
+        Collections.sort(jobList, new CompareArrivalThenBurst());
 
         System.out.println("Job list: "+jobList.toString());
 
@@ -59,7 +59,7 @@ public class NonPreemptiveSJF {
         System.out.println(gcArray);
     }
 
-    public static void checkForNewArrival(ArrayList<Job> jobList, LinkedList<Job> waitQueue, int cpuTime){
+    public void checkForNewArrival(ArrayList<Job> jobList, LinkedList<Job> waitQueue, int cpuTime){
 
         boolean flag = true;
         int i=0;
@@ -81,7 +81,7 @@ public class NonPreemptiveSJF {
         Collections.sort(waitQueue,new CompareBurst());;
     }
 
-    public static int process(Job j, int cpuTime, ArrayList<Job> jobList, LinkedList<Job> waitQueue, ArrayList<GanttChart> gcArray){
+    public int process(Job j, int cpuTime, ArrayList<Job> jobList, LinkedList<Job> waitQueue, ArrayList<GanttChart> gcArray){
 
         int cpuTimeCopy = cpuTime;
 
@@ -103,10 +103,6 @@ public class NonPreemptiveSJF {
 
         return cpuTime;
 
-    }
-
-    public static void main(String[] args){
-        solve();
     }
 
 }

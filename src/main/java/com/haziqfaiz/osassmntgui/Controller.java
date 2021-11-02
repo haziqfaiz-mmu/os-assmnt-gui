@@ -139,6 +139,7 @@ public class Controller implements Initializable {
             rr.fillJobList(arrivalTimeArray, burstTimeArray);
             rr.solve();
             gcArray = rr.getGcArray();
+            System.out.println(gcArray);
         }
     }
 

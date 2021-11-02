@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class PreemptiveSJF {
 
-    public static void solve(){
+    public void solve(){
         int cpuTime=0,avgWT, avgTT;
         ArrayList<Job> jobList = new ArrayList<Job>();
         ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
@@ -56,7 +56,7 @@ public class PreemptiveSJF {
         System.out.println(gcArray);
     }
 
-    public static void checkForNewArrival(ArrayList<Job> jobList, LinkedList<Job> waitQueue, int cpuTime){
+    public void checkForNewArrival(ArrayList<Job> jobList, LinkedList<Job> waitQueue, int cpuTime){
 
         boolean flag = true;
         int i=0;
@@ -78,7 +78,7 @@ public class PreemptiveSJF {
         Collections.sort(waitQueue,new CompareBurst());;
     }
 
-    public static int process(Job j, int cpuTime, ArrayList<Job> jobList, LinkedList<Job> waitQueue, ArrayList<GanttChart> gcArray){
+    public int process(Job j, int cpuTime, ArrayList<Job> jobList, LinkedList<Job> waitQueue, ArrayList<GanttChart> gcArray){
 
         int cpuTimeCopy = cpuTime;
 
@@ -106,9 +106,4 @@ public class PreemptiveSJF {
         return cpuTime;
 
     }
-
-    public static void main(String[] args){
-        solve();
-    }
-
 }
