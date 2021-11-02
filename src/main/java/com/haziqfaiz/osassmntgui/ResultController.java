@@ -32,9 +32,13 @@ public class ResultController {
 
     ArrayList<GanttChart> gcArray = new ArrayList<GanttChart>();
 
-    GanttChart gc1 = new GanttChart("P1", 1, 10);
-    GanttChart gc2 = new GanttChart("P2", 2, 20);
-    GanttChart gc3 = new GanttChart("P3", 3, 30);
+    public void setGcArray(ArrayList<GanttChart> gcArray){
+        this.gcArray = gcArray;
+    }
+
+    public ArrayList<GanttChart> getGcArray(){
+        return this.gcArray;
+    }
 
     @FXML
     private HBox hBox;
@@ -44,9 +48,7 @@ public class ResultController {
 
     public void initialize() {
 
-        gcArray.add(gc1);
-        gcArray.add(gc2);
-        gcArray.add(gc3);
+        System.out.println("gcArray in result: "+gcArray);
 
         for (int i = 0; i < gcArray.size(); i++) {
             Line line = new Line();

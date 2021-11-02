@@ -1,5 +1,6 @@
 package com.haziqfaiz.osassmntgui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -132,17 +133,36 @@ public class Controller implements Initializable {
         System.out.println(Arrays.toString(priorityArray));
     }
 
-    public void solveButtonMainAction(){
+    public void solveButtonMainAction(ActionEvent event){
         arrivalTextFieldAction();
         burstTextFieldAction();
 
 
         if(mainBox.getValue().equals("Round Robin")){
-            RoundRobin rr = new RoundRobin();
-            rr.fillJobList(arrivalTimeArray, burstTimeArray);
-            rr.solve();
-            gcArray = rr.getGcArray();
-            System.out.println("This is Round Robin");
+
+            try{
+                RoundRobin rr = new RoundRobin();
+                rr.fillJobList(arrivalTimeArray, burstTimeArray);
+                rr.solve();
+                gcArray = rr.getGcArray();
+                System.out.println("This is Round Robin");
+                System.out.println("gcArray in main: "+gcArray);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Result.fxml"));
+                Parent root = loader.load();
+                ResultController resultController = loader.getController();
+                resultController.setGcArray(gcArray);
+                resultController.initialize();
+
+                Scene scene = new Scene(root);
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setTitle("Scheduling Algorithm Solver");
+                stage.setScene(scene);
+                stage.show();
+            }catch (IOException e){}
+
+
+
         }
         else if(mainBox.getValue().equals("Non-Preemptive SJF")){
             NonPreemptiveSJF nsjf = new NonPreemptiveSJF();
