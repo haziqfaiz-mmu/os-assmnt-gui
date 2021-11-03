@@ -11,11 +11,13 @@
       <HBox fx:id="hBox" layoutY="136.0" prefHeight="42.0" prefWidth="600.0" />
       <Button fx:id="backButton" layoutX="273.0" layoutY="571.0" mnemonicParsing="false" onAction="#backButtonAction" text="Back" />
       <HBox fx:id="hBox1" layoutY="179.0" prefHeight="42.0" prefWidth="600.0" />
-      <TableView layoutX="89.0" layoutY="275.0" prefHeight="200.0" prefWidth="406.0">
+      <TableView fx:id="tableView" layoutX="-4.0" layoutY="274.0" prefHeight="200.0" prefWidth="600.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Process" />
-          <TableColumn prefWidth="140.0" text="Turn Around Time" />
-            <TableColumn prefWidth="190.0" text="Waiting Time" />
+          <TableColumn fx:id="processColumn" prefWidth="99.0" text="Process" />
+          <TableColumn fx:id="turnAroundColumn" prefWidth="138.0" text="Turn Around Time" />
+            <TableColumn fx:id="waitTimeColumn" minWidth="0.0" prefWidth="127.0" text="Waiting Time" />
+            <TableColumn fx:id="burstTimeColumn" prefWidth="114.0" text="Burst Time" />
+            <TableColumn fx:id="arrivalTimeColumn" prefWidth="121.0" text="Arrival Time" />
         </columns>
       </TableView>
    </children>

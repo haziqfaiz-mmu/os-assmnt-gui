@@ -11,6 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -47,6 +50,20 @@ public class ResultController {
 
     @FXML
     private Button backButton;
+
+    @FXML
+    TableView tableView;
+
+    @FXML
+    TableColumn<Job, String> processColumn;
+    @FXML
+    TableColumn<Job,Integer> waitTimeColumn;
+    @FXML
+    TableColumn<Job,Integer> turnAroundColumn;
+    @FXML
+    TableColumn<Job,Integer> burstTimeColumn;
+    @FXML
+    TableColumn<Job,Integer> arrivalTimeColumn;
 
     public void initialize() {
 
@@ -85,6 +102,21 @@ public class ResultController {
 
             hBox1.getChildren().add(stackPane2);
             hBox1.getChildren().add(line2);
+        }
+        //Fill in table
+        processColumn.setCellValueFactory(new PropertyValueFactory<>("JobID"));
+        tableView.getColumns().add(processColumn);
+        waitTimeColumn.setCellValueFactory(new PropertyValueFactory<>("WaitTime"));
+        tableView.getColumns().add(waitTimeColumn);
+        turnAroundColumn.setCellValueFactory(new PropertyValueFactory<>("TurnAroundTime"));
+        tableView.getColumns().add(turnAroundColumn);
+        burstTimeColumn.setCellValueFactory(new PropertyValueFactory<>("BurstTime"));
+        tableView.getColumns().add(burstTimeColumn);
+        arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<>("ArrivalTime"));
+        tableView.getColumns().add(burstTimeColumn);
+
+        for(int i=0;i<finishedJobList.size();i++){
+            tableView.getItems().add(finishedJobList.get(i));
         }
     }
 

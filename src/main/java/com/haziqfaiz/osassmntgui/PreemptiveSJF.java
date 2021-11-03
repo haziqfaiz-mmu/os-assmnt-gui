@@ -24,7 +24,7 @@ public class PreemptiveSJF {
 
         for(int i=0;i<arrivalTimeArray.length;i++){
             StringBuilder str = new StringBuilder("P");
-            str.append(i+1);
+            str.append(i);
 
             Job newJob = new Job(str.toString(),arrivalTimeArray[i],burstTimeArray[i]);
             jobList.add(newJob);
