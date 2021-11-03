@@ -79,6 +79,7 @@ public class ResultController {
         }
         averageTT = totalTT/finishedJobList.size();
 
+
         for(int i=0;i<finishedJobList.size();i++){
             totalWT = totalWT + finishedJobList.get(i).getWaitTime();
         }
@@ -87,7 +88,7 @@ public class ResultController {
         averageTText.setText(String.valueOf(averageTT));
         averageWTText.setText(String.valueOf(averageWT));
 
-        //Fill in tables and columns
+        //Fill in Gantt Chart
         for (int i = 0; i < gcArray.size(); i++) {
             //Fill in hBox
             Line line = new Line();

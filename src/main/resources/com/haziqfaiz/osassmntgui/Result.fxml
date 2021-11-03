@@ -23,5 +23,7 @@
       </TableView>
       <Label fx:id="averageTText" layoutX="273.0" layoutY="504.0" text="Label" />
       <Label fx:id="averageWTText" layoutX="272.0" layoutY="541.0" text="Label" />
+      <Label layoutX="72.0" layoutY="504.0" text="Average Turn Around Time :" />
+      <Label layoutX="72.0" layoutY="541.0" text="Average Wait Time :" />
    </children>
 </AnchorPane>
