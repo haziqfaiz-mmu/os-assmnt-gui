@@ -9,10 +9,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
@@ -40,6 +37,7 @@ public class ResultController {
         this.gcArray = gcArray;
     }
     public void setFinishedJobList(ArrayList<Job> finishedJobList){this.finishedJobList = finishedJobList;}
+    private double averageTT=0, averageWT=0, totalTT=0, totalWT=0;
 
     public ArrayList<GanttChart> getGcArray(){
         return this.gcArray;
@@ -64,13 +62,32 @@ public class ResultController {
     TableColumn<Job,Integer> burstTimeColumn;
     @FXML
     TableColumn<Job,Integer> arrivalTimeColumn;
+    @FXML
+    Label averageTText;
+    @FXML
+    Label averageWTText;
 
     public void initialize() {
 
         System.out.println("gcArray in result: "+gcArray);
-        if(!finishedJobList.isEmpty())
-        System.out.println("Finished Job List in result: "+finishedJobList.get(0).getTurnAroundTime());
 
+        //Calculate Average TT and WT
+        System.out.println("Finished JobList : "+finishedJobList);
+        for(int i=0;i<finishedJobList.size();i++){
+            totalTT = totalTT + finishedJobList.get(i).getTurnAroundTime();
+            System.out.println(totalTT);
+        }
+        averageTT = totalTT/finishedJobList.size();
+
+        for(int i=0;i<finishedJobList.size();i++){
+            totalWT = totalWT + finishedJobList.get(i).getWaitTime();
+        }
+        averageWT = totalWT/finishedJobList.size();
+
+        averageTText.setText(String.valueOf(averageTT));
+        averageWTText.setText(String.valueOf(averageWT));
+
+        //Fill in tables and columns
         for (int i = 0; i < gcArray.size(); i++) {
             //Fill in hBox
             Line line = new Line();

@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="os-assmnt-gui:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/os_assmnt_gui_jar</output-path>
+    <root id="archive" name="os-assmnt-gui.jar">
+      <element id="module-output" name="os-assmnt-gui" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/14.0.2.1/javafx-base-14.0.2.1-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/14.0.2.1/javafx-controls-14.0.2.1-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/14.0.2.1/javafx-graphics-14.0.2.1-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/14.0.2.1/javafx-base-14.0.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/14.0.2.1/javafx-fxml-14.0.2.1-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/14.0.2.1/javafx-controls-14.0.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/14.0.2.1/javafx-fxml-14.0.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/14.0.2.1/javafx-graphics-14.0.2.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

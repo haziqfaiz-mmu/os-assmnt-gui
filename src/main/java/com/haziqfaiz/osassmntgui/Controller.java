@@ -135,8 +135,8 @@ public class Controller implements Initializable {
             infoBox("Must be at least 3 processes", null, "Failed");
             return;
         }
-        if (arrivalTimeArray.length>13||burstTimeArray.length>13) {
-            infoBox("Must be at most 13 processes", null, "Failed");
+        if (arrivalTimeArray.length>10||burstTimeArray.length>13) {
+            infoBox("Must be at most 10 processes", null, "Failed");
             return;
         }
         if (arrivalTimeArray.length!=burstTimeArray.length) {
